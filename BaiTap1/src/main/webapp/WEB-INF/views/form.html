@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Email Configuration</title>
+</head>
+<body>
+<h1>Mục tiêu</h1>
+<p>Luyện tập sử dụng form binding</p>
+
+<h2>Mô tả</h2>
+<p>Bạn cần tạo một webapp có khả năng lưu giữ cấu hình của một hệ thống mail điện tử...</p>
+
+<h2>Settings</h2>
+<form th:action="@{/config}" th:object="${emailConfig}" method="post">
+  <label>Languages</label>
+  <select th:field="*{language}">
+    <option th:each="lang : ${languages}" th:value="${lang}" th:text="${lang}"></option>
+  </select>
+  <br/><br/>
+
+  <label>Page Size:</label>
+  <select th:field="*{pageSize}">
+    <option th:each="size : ${pagesSize}" th:value="${size}" th:text="${size}"></option>
+  </select>
+  emails per page
+  <br/><br/>
+
+  <label>Spams filter:</label>
+  <input type="checkbox" th:field="*{spamsFilter}"/> Enable spams filter
+  <br/><br/>
+
+  <label>Signature:</label>
+  <br/>
+  <textarea th:field="*{signature}" rows="4" cols="40"></textarea>
+  <br/><br/>
+
+  <button type="submit">Update</button>
+  <button type="reset">Cancel</button>
+</form>
+</body>
+</html>
