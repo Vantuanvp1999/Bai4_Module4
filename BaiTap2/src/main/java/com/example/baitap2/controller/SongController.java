@@ -9,6 +9,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +28,7 @@ public class SongController {
     public SongController(ISongService songService) {
         this.songService = songService;
     }
-    @GetMapping("/" )
+    @GetMapping("/songs" )
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView("index");
         List<Song> songs = songService.findAll();
@@ -60,6 +61,6 @@ public class SongController {
 
         Song song = new Song(songForm.getName(),songForm.getArtist(),songForm.getGenre(),fileName);
         songService.save(song);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/songs");
     }
 }

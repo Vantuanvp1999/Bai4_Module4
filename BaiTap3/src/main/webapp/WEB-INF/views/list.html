@@ -1,31 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Danh sách tờ khai</title>
+  <meta charset="UTF-8">
+  <title>Danh sách tờ khai y tế</title>
 </head>
 <body>
 <h2>DANH SÁCH TỜ KHAI</h2>
-<table border="1">
+
+<table border="1" cellpadding="5" cellspacing="0">
   <thead>
   <tr>
     <th>Họ tên</th>
     <th>Năm sinh</th>
+    <th>Giới tính</th>
     <th>Quốc tịch</th>
-    <th>Sốt</th>
-    <th>Ho</th>
-    <th>Tiếp xúc F0</th>
+    <th>CMND</th>
+    <th>Phương tiện</th>
+    <th>Nơi đã đi</th>
+    <th>Tỉnh</th>
+    <th>SĐT</th>
+    <th>Email</th>
+    <th>Triệu chứng</th>
+    <th>Tiếp xúc</th>
   </tr>
   </thead>
   <tbody>
-  <tr th:each="d : ${declarations}">
-    <td th:text="${d.fullName}"></td>
-    <td th:text="${d.birthYear}"></td>
-    <td th:text="${d.nationality}"></td>
-    <td th:text="${d.hasFever ? 'Có' : 'Không'}"></td>
-    <td th:text="${d.hasCough ? 'Có' : 'Không'}"></td>
-    <td th:text="${d.contactedCovid ? 'Có' : 'Không'}"></td>
+  <tr th:each="item : ${declarations}">
+    <td th:text="${item.fullName}"></td>
+    <td th:text="${item.birthYear}"></td>
+    <td th:text="${item.gender}"></td>
+    <td th:text="${item.nationality}"></td>
+    <td th:text="${item.idNumber}"></td>
+    <td th:text="${item.transportType} + ' / ' + ${item.vehicleNumber}"></td>
+    <td th:text="${item.recentPlaces}"></td>
+    <td th:text="${item.province}"></td>
+    <td th:text="${item.phone}"></td>
+    <td th:text="${item.email}"></td>
+    <td>
+      <span th:if="${item.hasFever}">Sốt </span>
+      <span th:if="${item.hasCough}">Ho </span>
+      <span th:if="${item.hasShortnessOfBreath}">Khó thở </span>
+      <span th:if="${item.hasSoreThroat}">Đau họng </span>
+      <span th:if="${item.hasNausea}">Buồn nôn </span>
+      <span th:if="${item.hasDiarrhea}">Tiêu chảy </span>
+      <span th:if="${item.hasSkinRash}">Phát ban </span>
+      <span th:if="${item.hasHemorrhage}">Xuất huyết </span>
+    </td>
+    <td>
+      <span th:if="${item.contactedAnimals}">Động vật </span>
+      <span th:if="${item.contactedCovid}">F0 </span>
+    </td>
   </tr>
   </tbody>
 </table>
+
+<br>
+<a th:href="@{/declaration}">← Quay lại form</a>
 </body>
 </html>

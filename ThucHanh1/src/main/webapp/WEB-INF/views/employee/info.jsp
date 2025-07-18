@@ -22,7 +22,7 @@
         <td>${id}</td>
     </tr>
     <tr>
-        <td>Contac Number:</td>
+        <td>Contact Number:</td>
         <td>${contactNumber}</td>
     </tr>
 </table>

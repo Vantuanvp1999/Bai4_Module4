@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Tờ khai y tế</title>
 </head>
 <body>
 <h2>TỜ KHAI Y TẾ</h2>
+
 <form th:action="@{/declaration/submit}" th:object="${healthDeclaration}" method="post">
+    <h3>Thông tin cá nhân</h3>
     <label>Họ tên:</label>
-    <input type="text" th:field="*{fullName}" required><br>
+    <input type="text" id="fullName" th:field="*{fullName}" ><br>
 
     <label>Năm sinh:</label>
-    <input type="number" th:field="*{birthYear}" required><br>
+    <input type="number"  id="birthYear" th:field="*{birthYear}"><br>
 
     <label>Giới tính:</label>
     <select th:field="*{gender}">
@@ -25,18 +28,59 @@
     <label>Số CMND / CCCD:</label>
     <input type="text" th:field="*{idNumber}" required><br>
 
-    <label>Sốt:</label>
-    <input type="checkbox" th:field="*{hasFever}"><br>
+    <h3>Phương tiện di chuyển</h3>
+    <label>Loại phương tiện:</label>
+    <input type="text" th:field="*{transportType}"><br>
 
-    <label>Ho:</label>
-    <input type="checkbox" th:field="*{hasCough}"><br>
+    <label>Số hiệu phương tiện:</label>
+    <input type="text" th:field="*{vehicleNumber}"><br>
 
-    <label>Khó thở:</label>
-    <input type="checkbox" th:field="*{hasShortnessOfBreath}"><br>
+    <label>Số ghế:</label>
+    <input type="text" th:field="*{seatNumber}"><br>
 
-    <label>Tiếp xúc F0:</label>
-    <input type="checkbox" th:field="*{contactedCovid}"><br>
+    <label>Ngày bắt đầu:</label>
+    <input type="date" th:field="*{startDate}"><br>
 
+    <label>Ngày kết thúc:</label>
+    <input type="date" th:field="*{endDate}"><br>
+
+    <label>Những nơi đã đi qua:</label>
+    <textarea th:field="*{recentPlaces}"></textarea><br>
+
+    <h3>Địa chỉ liên hệ</h3>
+    <label>Tỉnh/Thành phố:</label>
+    <input type="text" th:field="*{province}"><br>
+
+    <label>Quận/Huyện:</label>
+    <input type="text" th:field="*{district}"><br>
+
+    <label>Phường/Xã:</label>
+    <input type="text" th:field="*{ward}"><br>
+
+    <label>Địa chỉ cụ thể:</label>
+    <input type="text" th:field="*{address}"><br>
+
+    <label>Số điện thoại:</label>
+    <input type="text" th:field="*{phone}" required><br>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required><br>
+
+    <h3>Triệu chứng (trong 14 ngày qua)</h3>
+    <input type="checkbox" th:field="*{hasFever}"> Sốt<br>
+    <input type="checkbox" th:field="*{hasCough}"> Ho<br>
+    <input type="checkbox" th:field="*{hasShortnessOfBreath}"> Khó thở<br>
+    <input type="checkbox" th:field="*{hasSoreThroat}"> Đau họng<br>
+    <input type="checkbox" th:field="*{hasNausea}"> Buồn nôn<br>
+    <input type="checkbox" th:field="*{hasDiarrhea}"> Tiêu chảy<br>
+    <input type="checkbox" th:field="*{hasSkinRash}"> Phát ban<br>
+    <input type="checkbox" th:field="*{hasHemorrhage}"> Xuất huyết<br>
+
+    <h3>Tiếp xúc</h3>
+    <input type="checkbox" th:field="*{contactedAnimals}"> Động vật hoang dã<br>
+    <input type="checkbox" th:field="*{contactedCovid}"> Người nhiễm COVID-19<br>
+
+    <br>
     <button type="submit">Gửi tờ khai</button>
 </form>
 </body>
